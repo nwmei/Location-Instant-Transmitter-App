@@ -1,2 +1,4 @@
-gradle/
+gradle/4.1/fileHashes/
+.idea/
+app/.idea/
 local.properties
