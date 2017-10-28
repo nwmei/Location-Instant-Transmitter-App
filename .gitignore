@@ -2,5 +2,4 @@
 app/.idea/
 local.properties
 build/
-.gradle/4.1/fileHashes/
-.gradled/4.1/taskHistory/
+.gradle
