@@ -1,6 +1,12 @@
 .idea/
 app/.idea/
 local.properties
-build/
-.gradle/4.1/fileHashes/
-.gradled/4.1/taskHistory/
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
