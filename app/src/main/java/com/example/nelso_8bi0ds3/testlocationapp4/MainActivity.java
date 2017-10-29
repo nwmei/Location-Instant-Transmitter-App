@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
-    public class twilio {
+    public class Twilio {
         // Find your Account Sid and Token at twilio.com/user/account
         public static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
         public static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
@@ -174,7 +174,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
-
-
 }
+
