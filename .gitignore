@@ -2,6 +2,8 @@
 app/.idea/
 local.properties
 *.iml
+app/app.iml
+TestLocationApp4.iml
 .gradle
 /local.properties
 /.idea
