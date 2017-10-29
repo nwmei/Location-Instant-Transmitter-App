@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-
+        }
 
         //request queue for volley library
         requestQueue = Volley.newRequestQueue(this);
@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                                 try {
                                     String address = response.getJSONArray("results").getJSONObject(0).getString
                                             ("formatted_address");
-                                    mLatitudeText.setText(address);
+                                    //update text on address box to become address
+                                    TextView t = new TextView (findViewById(R.id.addressView);
+                                    t.setText(address);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

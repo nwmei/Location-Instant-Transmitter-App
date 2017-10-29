@@ -22,7 +22,7 @@
         android:id="@+id/latitudeID"
         android:layout_width="155dp"
         android:layout_height="45dp"
-        android:text="@string/extracted_latitude"
+        android:text="extracted_latitude"
         tools:layout_editor_absoluteX="211dp"
         tools:layout_editor_absoluteY="34dp" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/longitudeID"
         android:layout_width="155dp"
         android:layout_height="45dp"
-        android:text="@string/extracted_longitude"
+        android:text="extracted_longitude"
         tools:layout_editor_absoluteX="213dp"
         tools:layout_editor_absoluteY="110dp" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/latitudeText"
         android:layout_width="155dp"
         android:layout_height="45dp"
-        android:text="@string/latitude"
+        android:text="Latitude:"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="34dp"
         tools:textColor="@color/colorPrimaryDark"
@@ -48,10 +48,18 @@
         android:id="@+id/longitudeText"
         android:layout_width="155dp"
         android:layout_height="45dp"
-        android:text="@string/longitude"
+        android:text="Longitude:"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="110dp"
         tools:textColor="@color/colorPrimaryDark"
         tools:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/addressView"
+        android:layout_width="298dp"
+        android:layout_height="63dp"
+        android:text="Address shows up here when button pressed"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="354dp" />
 
 </android.support.constraint.ConstraintLayout>
