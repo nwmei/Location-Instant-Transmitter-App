@@ -1,10 +1,6 @@
 package com.example.nelso_8bi0ds3.testlocationapp4;
 
 
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,14 +15,19 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
-    String mLatitudeText = "";
-    String mLongitudeText = "";
+    TextView mLatitudeText;
+    TextView mLongitudeText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +46,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView latitude = (TextView) findViewById(R.id.latitudeID);
-                TextView longitude = (TextView) findViewById(R.id.longitudeID);
+            // use Twilio to send text onClick
 
-                latitude.setText(mLatitudeText);
-                longitude.setText(mLongitudeText);
             }
         });
     }
@@ -103,9 +101,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
+                        mLatitudeText = (TextView) findViewById(R.id.latitudeID);
+                        mLongitudeText = (TextView) findViewById(R.id.longitudeID)
                         //set the text views to the latitude and longitude values
-                        mLatitudeText = String.valueOf(mLastLocation.getLatitude());
-                        mLongitudeText = String.valueOf(mLastLocation.getLongitude());
+                        mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+                        mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
                     }
 
                 } else {
