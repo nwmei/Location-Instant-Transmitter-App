@@ -1,6 +1,5 @@
 package com.example.nelso_8bi0ds3.testlocationapp4;
 
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,8 +18,6 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
-import org.w3c.dom.Text;
-
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener {
@@ -28,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     GoogleApiClient mGoogleApiClient;
     TextView mLatitudeText;
     TextView mLongitudeText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            // use Twilio to send text onClick
+                // use Twilio to send text onClick
+                SMS sms = new SMS();
 
             }
         });
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Location mLastLocation=new Location("");
+                    Location mLastLocation = new Location("");
 
                     if (ActivityCompat.checkSelfPermission(this,
                             Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     }
                     if (mLastLocation != null) {
                         mLatitudeText = (TextView) findViewById(R.id.latitudeID);
-                        mLongitudeText = (TextView) findViewById(R.id.longitudeID)
+                        mLongitudeText = (TextView) findViewById(R.id.longitudeID);
                         //set the text views to the latitude and longitude values
                         mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
                         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
@@ -121,12 +120,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
-    public class twilio {
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+    public class SMS {
         // Find your Account Sid and Token at twilio.com/user/account
         public static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
         public static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
 
-        public void main(String[] args) {
+        public SMS (){
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
             Message message = Message.creator(new PhoneNumber("+9148068050"),
@@ -135,9 +138,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             System.out.println(message.getSid());
         }
     }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 }
+
