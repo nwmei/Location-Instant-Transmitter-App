@@ -12,6 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -19,6 +24,8 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 
@@ -28,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     GoogleApiClient mGoogleApiClient;
     TextView mLatitudeText;
     TextView mLongitudeText;
+
+    private RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +52,34 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .build();
         }
 
+        //request queue for volley library
+        requestQueue = Volley.newRequestQueue(this);
+
         Button alert = (Button) findViewById(R.id.alert);
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/" +
+                        "api/geocode/json?latlng=0,0&key=AIzaSyAddj-q2zGCJQnEtdfjbUu4VO4ZZsOdsKY", new
+                        Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    String address = response.getJSONArray("results").getJSONObject(0).getString
+                                            ("formatted_address");
+                                    mLatitudeText.setText(address);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                requestQueue.add(request);
             // use Twilio to send text onClick
 
             }
@@ -142,11 +176,5 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
 
-
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 
 }
