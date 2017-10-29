@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -21,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         , GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
-    TextView mLatitudeText;
-    TextView mLongitudeText;
+    String mLatitudeText = "";
+    String mLongitudeText = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 TextView latitude = (TextView) findViewById(R.id.latitudeID);
                 TextView longitude = (TextView) findViewById(R.id.longitudeID);
 
-                latitude.setText(mLatitudeText.getText().toString());
-                longitude.setText(mLongitudeText.getText().toString());
+                latitude.setText(mLatitudeText);
+                longitude.setText(mLongitudeText);
             }
         });
     }
@@ -99,12 +98,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
-                        mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
-                        mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
+//                        mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
+//                        mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
 
                         //set the text views to the latitude and longitude values
-                        mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-                        mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+                        mLatitudeText = String.valueOf(mLastLocation.getLatitude();
+                        mLongitudeText = String.valueOf(mLastLocation.getLongitude();
                     }
 
                 } else {
