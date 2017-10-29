@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView t = findViewById(R.id.addressView);
+                final TextView t = findViewById(R.id.addressView);
                 // use Twilio to send text onClick
                 String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + mLatitudeText.getText() + ',' + mLongitudeText.getText() +"&";
                 String api_key = "key=AIzaSyAddj-q2zGCJQnEtdfjbUu4VO4ZZsOdsKY";
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 requestQueue.add(request);
                 // use Twilio to send text onClick
 
-                SMS sms = new SMS(t.getText()); // creates a new SMS that takes the google API output and sends it to the input phone numbers
+                SMS sms = new SMS(t.getText().toString()); // creates a new SMS that takes the google API output and sends it to the input phone numbers
             }
         });
     }
