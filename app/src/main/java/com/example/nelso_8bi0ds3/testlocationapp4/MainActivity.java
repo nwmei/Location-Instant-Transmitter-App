@@ -47,19 +47,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-        }
+
 
         //request queue for volley library
         requestQueue = Volley.newRequestQueue(this);
 
-        Button alert = (Button) findViewById(R.id.alert);
+        Button alert = findViewById(R.id.alert);
         alert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // use Twilio to send text onClick
-                SMS sms = new SMS();
-                JsonObjectRequest request = new JsonObjectRequest("https://maps.googleapis.com/maps/" +
-                        "api/geocode/json?latlng=0,0&key=AIzaSyAddj-q2zGCJQnEtdfjbUu4VO4ZZsOdsKY", new
+                String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + mLatitudeText.getText() + ',' + mLongitudeText.getText() +"&";
+                String api_key = "key=AIzaSyAddj-q2zGCJQnEtdfjbUu4VO4ZZsOdsKY";
+
+                JsonObjectRequest request = new JsonObjectRequest(url + api_key, new
                         Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -79,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     }
                 });
                 requestQueue.add(request);
-            // use Twilio to send text onClick
+                // use Twilio to send text onClick
+
+                SMS sms = new SMS(); // creates a new SMS that takes the google API output and sends it to the input phone numbers
             }
         });
     }
@@ -133,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
-                        mLatitudeText = (TextView) findViewById(R.id.latitudeID);
-                        mLongitudeText = (TextView) findViewById(R.id.longitudeID);
+                        mLatitudeText = findViewById(R.id.latitudeID);
+                        mLongitudeText = findViewById(R.id.longitudeID);
                         //set the text views to the latitude and longitude values
                         mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
                         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
