@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-
+        }
 
         //request queue for volley library
         requestQueue = Volley.newRequestQueue(this);
@@ -161,12 +161,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-    public class SMS {
+    private class SMS {
         // Find your Account Sid and Token at twilio.com/user/account
-        public static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
-        public static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
+        static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
+        static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
 
-        public SMS (){
+        SMS(){
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
             Message message = Message.creator(new PhoneNumber("+9148068050"),
