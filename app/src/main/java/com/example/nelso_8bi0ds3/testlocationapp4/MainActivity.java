@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 // use Twilio to send text onClick
 
                 SMS sms = new SMS(t.getText().toString()); // creates a new SMS that takes the google API output and sends it to the input phone numbers
+                sms.sendLocation();
             }
         });
     }
@@ -168,13 +169,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         // Find your Account Sid and Token at twilio.com/user/account
         static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
         static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
+        String location_to_send;
+        Message message;
 
         SMS(String location){
+            location_to_send = location;
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-            Message message = Message.creator(new PhoneNumber("+9148068050"),
+            message = Message.creator(new PhoneNumber("+9148068050"),
                     new PhoneNumber("+2012988385"),"Find me: "+location).create();
+        }
 
+        void sendLocation() {
             System.out.println(message.getSid());
         }
     }
