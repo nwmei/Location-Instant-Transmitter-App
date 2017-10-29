@@ -1,5 +1,10 @@
 package com.example.nelso_8bi0ds3.testlocationapp4;
 
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -95,5 +100,23 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
             // permissions this app might request
         }
     }
+
+    public class twilio {
+        // Find your Account Sid and Token at twilio.com/user/account
+        public static final String ACCOUNT_SID = "AC679dc9808e33e85f3a7a2c990670e70c";
+        public static final String AUTH_TOKEN = "8821bfa14b21fe7a4eaae0739eaf58df";
+
+        public void main(String[] args) {
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+            Message message = Message.creator(new PhoneNumber("+9148068050"),
+                    new PhoneNumber("+2012988385"),"This is message").create();
+
+            System.out.println(message.getSid());
+        }
+    }
+
+
+
 
 }
