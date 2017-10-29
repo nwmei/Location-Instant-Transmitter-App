@@ -3,22 +3,26 @@ package com.example.nelso_8bi0ds3.testlocationapp4;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.EditText;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 
 
-public abstract class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
-
+    TextView mLatitudeText;
+    TextView mLongitudeText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,18 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        Button alert = (Button) findViewById(R.id.alert);
+        alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView latitude = (TextView) findViewById(R.id.latitudeID);
+                TextView longitude = (TextView) findViewById(R.id.longitudeID);
+
+                latitude.setText(mLatitudeText.getText().toString());
+                longitude.setText(mLongitudeText.getText().toString());
+            }
+        });
     }
 
     protected void onStart() {
@@ -59,6 +75,11 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
         }
     }
 
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -78,8 +99,8 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
-                        TextView mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
-                        TextView mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
+                        mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
+                        mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
 
                         //set the text views to the latitude and longitude values
                         mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
@@ -99,4 +120,8 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
         }
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

@@ -7,7 +7,7 @@
     tools:context="com.example.nelso_8bi0ds3.testlocationapp4.MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/alert"
         android:layout_width="137dp"
         android:layout_height="74dp"
         android:backgroundTint="@android:color/holo_red_dark"
@@ -19,23 +19,23 @@
         tools:textColorHighlight="@color/common_google_signin_btn_text_dark_focused" />
 
     <TextView
-        android:id="@+id/mLatitudeID"
+        android:id="@+id/latitudeID"
         android:layout_width="157dp"
         android:layout_height="44dp"
-        android:text="TextView"
+        android:text="Latitude"
         tools:layout_editor_absoluteX="228dp"
         tools:layout_editor_absoluteY="34dp" />
 
     <TextView
-        android:id="@+id/mLongitudeID"
+        android:id="@+id/longitudeID"
         android:layout_width="155dp"
         android:layout_height="45dp"
-        android:text="TextView"
+        android:text="Longitude"
         tools:layout_editor_absoluteX="228dp"
         tools:layout_editor_absoluteY="110dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/latitudeText"
         android:layout_width="143dp"
         android:layout_height="43dp"
         android:text="Latitude:"
@@ -45,7 +45,7 @@
         tools:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/longitudeText"
         android:layout_width="143dp"
         android:layout_height="42dp"
         android:text="Longitude:"
