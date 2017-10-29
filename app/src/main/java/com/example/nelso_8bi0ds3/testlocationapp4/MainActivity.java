@@ -98,12 +98,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
-//                        mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
-//                        mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
-
                         //set the text views to the latitude and longitude values
-                        mLatitudeText = String.valueOf(mLastLocation.getLatitude();
-                        mLongitudeText = String.valueOf(mLastLocation.getLongitude();
+                        mLatitudeText = String.valueOf(mLastLocation.getLatitude());
+                        mLongitudeText = String.valueOf(mLastLocation.getLongitude());
                     }
 
                 } else {
