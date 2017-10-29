@@ -6,6 +6,7 @@ import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -77,8 +78,10 @@ public abstract class MainActivity extends AppCompatActivity implements GoogleAp
                                 mGoogleApiClient);
                     }
                     if (mLastLocation != null) {
-                        String mLatitudeText="";
-                        String mLongitudeText="";
+                        TextView mLatitudeText = (TextView) findViewById(R.id.mLatitudeID);
+                        TextView mLongitudeText = (TextView) findViewById(R.id.mLongitudeID);
+
+                        //set the text views to the latitude and longitude values
                         mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
                         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
                     }
